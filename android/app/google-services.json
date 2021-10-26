@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820040335245",
+    "project_id": "ungeasyshop",
+    "storage_bucket": "ungeasyshop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820040335245:android:4fa02472622e2a3343c7c4",
+        "android_client_info": {
+          "package_name": "com.flutterthailand.ungeasyshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820040335245-uc3dnar7mv112ugr20p29mdgts8p5g4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEhs455ElsPbfAwrZb1JywhDJT-Oaxbqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820040335245-uc3dnar7mv112ugr20p29mdgts8p5g4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

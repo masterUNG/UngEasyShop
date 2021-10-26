@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:ungeasyshop/utility/my_constant.dart';
-import 'package:ungeasyshop/widgets/show_signout.dart';
 import 'package:ungeasyshop/widgets/show_text.dart';
 
-class ServiceShopper extends StatefulWidget {
-  const ServiceShopper({Key? key}) : super(key: key);
+class StockProduct extends StatefulWidget {
+  const StockProduct({Key? key}) : super(key: key);
 
   @override
-  _ServiceShopperState createState() => _ServiceShopperState();
+  _StockProductState createState() => _StockProductState();
 }
 
-class _ServiceShopperState extends State<ServiceShopper> {
+class _StockProductState extends State<StockProduct> {
   List<String> titles = [
-    'แก้ไขข้อมุลร้านค้า',
-    'การสต้อคสินค้า',
-    'การจัดโปรโมชั่น',
-    'ประวัติรายการ',
-    'หน้าร้านค้า',
-    'สถาณะสั่งซื่อ',
-    'ติดต่อลูกค้า',
+    'คลังสินค้า',
+    'สินค้าใกล้หมดอายุ',
+    'สินค้าค้างสต้อค',
+    'สินค้าขายดี',
   ];
 
   List<String> routeProducts = [
-    MyConstant.routeEditShopProfile,
-    MyConstant.routeStockProduct,
-    '',
-    '',
+    MyConstant.routeStockProductCatigory,
     '',
     '',
     '',
@@ -36,8 +29,7 @@ class _ServiceShopperState extends State<ServiceShopper> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyConstant.primary,
-        title: const Text('ส่วนของ ร้านค้า'),
-        actions: [ShowSignOut()],
+        title: const Text('การสต้อคสินค้า'),
       ),
       body: ListView.builder(
         itemCount: titles.length,

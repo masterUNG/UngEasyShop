@@ -6,6 +6,11 @@ class MyConstant {
   static String routeCreateAccount = '/createAccount';
   static String routeServiceBuyer = '/serviceBuyer';
   static String routeServerShopper = '/serviceShopper';
+  static String routeForgotPassword = '/forgotPassword';
+  static String routeStockProduct = '/stockProduct';
+  static String routeEditShopProfile = '/editShopProfile';
+  static String routeStockProductCatigory = '/stockProductCatigory';
+  static String routeAddStockProductCat = '/addStockProductCat';
 
   static Color primary = const Color(0xff2c3baa);
   static Color dark = const Color(0xff00157a);

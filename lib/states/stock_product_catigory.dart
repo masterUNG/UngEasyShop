@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ungeasyshop/models/stock_model.dart';
+import 'package:ungeasyshop/states/add_product.dart';
 import 'package:ungeasyshop/utility/my_constant.dart';
 import 'package:ungeasyshop/widgets/show_process.dart';
 import 'package:ungeasyshop/widgets/show_text.dart';
@@ -65,29 +66,47 @@ class _StockProductCatigoryState extends State<StockProductCatigory> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushNamed(
-                context, MyConstant.routeAddStockProductCat).then((value) => readStock()),
-            icon: Icon(Icons.add_box),
+            onPressed: () =>
+                Navigator.pushNamed(context, MyConstant.routeAddStockProductCat)
+                    .then((value) => readStock()),
+            icon: const Icon(Icons.add_box),
           ),
         ],
         backgroundColor: MyConstant.primary,
-        title: Text('คลังสินค้า (กลุ่มของสินค้า)'),
+        title: const Text('คลังสินค้า (กลุ่มของสินค้า)'),
       ),
       body: load
-          ? ShowProcess()
+          ? const ShowProcess()
           : haveStock!
-              ? ListView.builder(itemCount: stockModels.length,
-                  itemBuilder: (context, index) => ShowText(
-                    title: stockModels[index].cat,
-                    textStyle: MyConstant().h2Style(),
-                  ),
-                )
+              ? buildListType()
               : Center(
                   child: ShowText(
                     title: 'ยังไม่มี กลุ่มสินค้า',
                     textStyle: MyConstant().h1Style(),
                   ),
                 ),
+    );
+  }
+
+  ListView buildListType() {
+    return ListView.builder(
+      itemCount: stockModels.length,
+      itemBuilder: (context, index) => InkWell(
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddProduct(stockModel: stockModels[index]),
+            )),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ShowText(
+              title: stockModels[index].cat,
+              textStyle: MyConstant().h2Style(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ungeasyshop/models/stock_model.dart';
 import 'package:ungeasyshop/utility/my_constant.dart';
 import 'package:ungeasyshop/widgets/show_logo.dart';
@@ -16,6 +19,8 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   StockModel? stockModel;
+
+  File? file;
 
   @override
   void initState() {
@@ -44,13 +49,14 @@ class _AddProductState extends State<AddProduct> {
   }
 
   Container buildSave() {
-    return Container(width: 250,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('Save'),
-            style: MyConstant().myButtonStyle(),
-          ),
-        );
+    return Container(
+      width: 250,
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text('Save'),
+        style: MyConstant().myButtonStyle(),
+      ),
+    );
   }
 
   Container buildName() {
@@ -66,7 +72,8 @@ class _AddProductState extends State<AddProduct> {
   }
 
   Container buildStock() {
-    return Container(margin: EdgeInsets.symmetric(vertical: 16),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 16),
       width: 250,
       child: TextFormField(
         keyboardType: TextInputType.number,
@@ -78,22 +85,32 @@ class _AddProductState extends State<AddProduct> {
     );
   }
 
+  Future<void> processTakePhoto(ImageSource source) async {
+    try {
+      var result = await ImagePicker()
+          .pickImage(source: source, maxWidth: 800, maxHeight: 800);
+      setState(() {
+        file = File(result!.path);
+      });
+    } catch (e) {}
+  }
+
   Row buildImage() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.add_a_photo),
+          onPressed: () =>processTakePhoto(ImageSource.camera),
+          icon: const Icon(Icons.add_a_photo),
         ),
         Container(
           width: 150,
           height: 150,
-          child: ShowLogo(),
+          child: file == null ? const ShowImage() : Image.file(file!) ,
         ),
         IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.add_photo_alternate),
+          onPressed: () =>processTakePhoto(ImageSource.gallery),
+          icon: const Icon(Icons.add_photo_alternate),
         ),
       ],
     );

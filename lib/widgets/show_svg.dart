@@ -6,6 +6,6 @@ class ShowImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset('images/image.svg');
+    return SvgPicture.asset('images/pic.svg');
   }
 }
